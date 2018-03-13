@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="UTF-8">
+		<title>Resistor Value Calculator</title>
+		<link href="animate.css" rel="stylesheet"/>
+		<link href="https://fonts.googleapis.com/css?family=Raleway|Nunito|Titillium+Web" rel="stylesheet">
+	</head>
+
+	<body>
+	<style>
+	body {
+		font-family: Helvetica, sans-serif;
+	}
+	
+	#content{
+		width: 900px;
+		margin-left: auto;
+		margin-right: auto;
+		height:100vh;
+	}
+	
+	h4{
+		font-weight: normal;
+	}
+		
+	div{
+		margin-bottom: 15px;
+	}
+	
+	#colour{
+		margin-top: 30px;
+	}
+	
+	.bands{
+		text-align: center;
+		background-color: #f4b942;
+		border-radius: 15px;
+		border: 3px solid #9e8658;
+		width: 140px;
+		height: 130px;
+		display: inline-block;
+		vertical-align:top;
+	}
+		
+	form{
+		display:inline;
+		margin-left: 15px;
+	}
+	
+	select{
+		width: 90px;
+		}
+	
+	p{
+		margin-bottom: 20px;
+		
+	}
+	
+	.center {
+		display: block;
+		margin-left: 100px;
+		width: 50%;
+	}
+	
+	img {
+		transition:transform 0.25s ease;
+	}
+
+	img:hover {
+		-webkit-transform:scale(1.5);
+		transform:scale(1.5);
+	}
+	</style>
+	
+	<div id="container">
+	
+		<div class="header">
+			<h1 style="margin-top: 60px; text-align: center;" class="animate animated fadeInDown">Resistor Value Calculator</h1>
+		</div>
+		
+		<div id="content">
+			<h4>Welcome. Select number of bands and band colours. It will calculate resistor value after the multiplier is changed.</h4>
+			<div id="bands">
+			<b>Select number of bands :</b>
+			
+				<form>
+				  <input type="radio" name="band" value="4" onchange="changeBands(4)" CHECKED> 4 Bands
+				  <input type="radio" name="band" value="5" onchange="changeBands(5)"> 5 Bands
+				  <input type="radio" name="band" value="6" onchange="changeBands(6)"> 6 Bands 
+				</form>
+			</div>
+			
+			<div id="colour">
+				
+				<div id="firstBand" class="bands" >
+				<h4>1st Band</h4>
+				<select id="band1" onchange="bandValue(this)">
+				  <option value="1" selected>Brown</option>
+				  <option value="2">Red</option>
+				  <option value="3">Orange</option>
+				  <option value="4">Yellow</option>
+				  <option value="5">Green</option>
+				  <option value="6">Blue</option>
+				  <option value="7">Violet</option>
+				  <option value="8">Grey</option>
+				  <option value="9">White</option>
+				</select>
+				<p id="firstValue"></p>
+				</div>
+				
+				<div id="secondBand" class="bands">
+				<h4>2nd Band</h4>
+				<select id="band2" onchange="bandValue(this)">
+				  <option value="0" selected>Black</option>
+				  <option value="1">Brown</option>
+				  <option value="2">Red</option>
+				  <option value="3">Orange</option>
+				  <option value="4">Yellow</option>
+				  <option value="5">Green</option>
+				  <option value="6">Blue</option>
+				  <option value="7">Violet</option>
+				  <option value="8">Grey</option>
+				  <option value="9">White</option>
+				</select>
+				<p id="secondValue"></p>
+				</div>
+				
+				<div id="thirdBand" class="bands"><!-- Only used when theres 5 or 6 bands -->
+				<h4>3rd Band</h4>
+				<select id="band3" onchange="bandValue(this)">
+				  <option value="0" selected>Black</option>
+				  <option value="1">Brown</option>
+				  <option value="2">Red</option>
+				  <option value="3">Orange</option>
+				  <option value="4">Yellow</option>
+				  <option value="5">Green</option>
+				  <option value="6">Blue</option>
+				  <option value="7">Violet</option>
+				  <option value="8">Grey</option>
+				  <option value="9">White</option>
+				</select>
+				<p id="thirdValue"></p>
+				</div>
+				
+				<div id="fourthBand" class="bands">
+				<h4>Multiplier</h4>
+				<select id="band4" onchange="bandValue(this)">
+				  <option value="1" selected>Black</option>
+				  <option value="10">Brown</option>
+				  <option value="100">Red</option>
+				  <option value="1K">Orange</option>
+				  <option value="10K">Yellow</option>
+				  <option value="100K">Green</option>
+				  <option value="1M">Blue</option>
+				  <option value="10M">Violet</option>
+				  <option value="100M">Grey</option>
+				  <option value="1G">White</option>
+				  <option value="0.1">Gold</option>
+				  <option value="0.01">Silver</option>
+				</select>
+				<p id="multiplier"></p>
+				</div>
+				
+				<div id="tolerance" class="bands">
+				<h4>Tolerance</h4>
+				<select id="toleranceSel" onchange="bandValue(this)">
+				  <option value="1" selected>Brown</option>
+				  <option value="2">Red</option>
+				  <option value="0.5">Green</option>
+				  <option value="0.25">Blue</option>
+				  <option value="0.1">Violet</option>
+				  <option value="0.05">Grey</option>
+				  <option value="5">Gold</option>
+				  <option value="10">Silver</option>
+				</select>
+				<p id="toleranceVal"></p>
+				</div>
+				
+				<div id="temp" class="bands">
+				<h4>Temperature</h4>
+				<select id="temperature" onchange="bandValue(this)"><!-- Only used when theres 6 bands -->
+				  <option value="250" selected>Black</option>
+				  <option value="100">Brown</option>
+				  <option value="50">Red</option>
+				  <option value="15">Orange</option>
+				  <option value="25">Yellow</option>
+				  <option value="20">Green</option>
+				  <option value="10">Blue</option>
+				  <option value="5">Violet</option>
+				  <option value="1">Grey</option>
+				</select>
+				<p id="tempVal"></p>
+				</div>
+			</div>
+			
+			<div id="value">
+				<b>Resistor Value  : </b>
+				<span id="result"></span><span>&Omega;</span><span id="tol"></span><span id="temper"></span>
+			</div>
+			<div id="table">
+				<img src="resistor-color-chart.jpg" alt="Resistor Color Chart" class="center">
+			</div>
+		</div>
+		
+		<div style="position:fixed;padding:13px;bottom:0;right:0;" >Copyright &copy; 2017 Dandi Temmu</div>
+	</div>
+	
+	<script src="resistor.js"></script>
+    </body>
+</html>
